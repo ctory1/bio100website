@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Test Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitosis - Cell Division</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>This is a simple test page to see if your website is working correctly.</p>
+    <header>
+        <h1>Mitosis: The Dance of Cell Division</h1>
+        <nav>
+            <a href="index.html" class="active">Mitosis Overview</a>
+            <a href="abnormal.html">Abnormal Mitosis</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>What is Mitosis?</h2>
+            <p>Mitosis is the process of cell division that results in two identical daughter cells from a single parent cell. It's essential for growth, repair, and maintenance of multicellular organisms.</p>
+        </section>
+
+        <section class="phases">
+            <h2>Phases of the Cell Cycle</h2>
+            <div class="phase-container">
+                <div class="phase" onclick="showInfo('g1')">
+                    <h3>G1 Phase</h3>
+                    <p>First growth phase</p>
+                </div>
+                <div class="phase" onclick="showInfo('s')">
+                    <h3>S Phase</h3>
+                    <p>DNA replication</p>
+                </div>
+                <div class="phase" onclick="showInfo('g2')">
+                    <h3>G2 Phase</h3>
+                    <p>Second growth phase</p>
+                </div>
+                <div class="phase" onclick="showInfo('m')">
+                    <h3>M Phase</h3>
+                    <p>Mitosis occurs</p>
+                </div>
+            </div>
+            <div id="phase-info">
+                <p>Click a phase to learn more!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Biology Education</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
