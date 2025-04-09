@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abnormal Mitosis - DNA Damage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Abnormal Mitosis & DNA Damage</h1>
+        <nav>
+            <a href="index.html">Mitosis Overview</a>
+            <a href="abnormal.html" class="active">Abnormal Mitosis</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>When Mitosis Goes Wrong</h2>
+            <p>Abnormal mitosis occurs when the cell division process is disrupted, often due to DNA damage, leading to potential health issues including cancer.</p>
+        </section>
+
+        <section class="phases">
+            <h2>Affected Phases</h2>
+            <div class="phase-container">
+                <div class="phase" onclick="showAbnormalInfo('g1')">
+                    <h3>G1 Checkpoint Failure</h3>
+                    <p>Damaged DNA proceeds</p>
+                </div>
+                <div class="phase" onclick="showAbnormalInfo('s')">
+                    <h3>S Phase Errors</h3>
+                    <p>Replication mistakes</p>
+                </div>
+                <div class="phase" onclick="showAbnormalInfo('g2')">
+                    <h3>G2 Checkpoint Failure</h3>
+                    <p>Unrepaired DNA</p>
+                </div>
+                <div class="phase" onclick="showAbnormalInfo('m')">
+                    <h3>M Phase Disruption</h3>
+                    <p>Unequal division</p>
+                </div>
+            </div>
+            <div id="phase-info">
+                <p>Click a phase to see how abnormalities affect it!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Biology Education</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
