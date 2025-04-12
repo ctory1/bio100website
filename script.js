@@ -1,5 +1,6 @@
 function showInfo(phase) {
-    const infoDiv = document.getElementById('phase-info');
+    const modal = document.getElementById('info-modal');
+    const modalText = document.getElementById('modal-text');
     let info = '';
 
     switch(phase) {
@@ -17,11 +18,13 @@ function showInfo(phase) {
             break;
     }
 
-    infoDiv.innerHTML = `<p>${info}</p>`;
+    modalText.innerHTML = info;
+    modal.style.display = 'flex';
 }
 
 function showAbnormalInfo(phase) {
-    const infoDiv = document.getElementById('phase-info');
+    const modal = document.getElementById('info-modal');
+    const modalText = document.getElementById('modal-text');
     let info = '';
 
     switch(phase) {
@@ -39,5 +42,11 @@ function showAbnormalInfo(phase) {
             break;
     }
 
-    infoDiv.innerHTML = `<p>${info}</p>`;
+    modalText.innerHTML = info;
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    const modal = document.getElementById('info-modal');
+    modal.style.display = 'none';
 }
