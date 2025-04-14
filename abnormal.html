@@ -5,6 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abnormal Mitosis - DNA Damage</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .specific-mutation, .pRb-info, .references {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .specific-mutation h2, .pRb-info h2, .references h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .pRb-graphic-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .pRb-graphic {
+            background-color: #3498db;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            flex: 1;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .pRb-graphic:hover {
+            transform: scale(1.05);
+        }
+        .pRb-details {
+            background-color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -48,7 +89,28 @@
 
         <section class="specific-mutation">
             <h2>How pRb Mutations Disrupt Mitosis and Cause Cancer</h2>
-            <p>Mutations in the retinoblastoma protein (pRb) gene impair the loading of the condensin II complex, which is essential for proper chromosome condensation during mitosis. This leads to less compact chromosomes, increasing susceptibility to DNA breaks during prolonged mitosis. These defects contribute to genomic instability, promoting tumor formation and cancer aggressiveness, as seen in mouse models. This connection highlights how mitotic errors can drive cancer development beyond simple chromosome missegregation.</p>[](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3518222/)[](https://www.cancer.gov/about-cancer/causes-prevention/genetics)
+            <p>Mutations in the retinoblastoma protein (pRb) gene impair the loading of the condensin II complex, which is essential for proper chromosome condensation during mitosis. This leads to less compact chromosomes, increasing susceptibility to DNA breaks during prolonged mitosis. These defects contribute to genomic instability, promoting tumor formation and cancer aggressiveness, as observed in mouse models (Thompson et al., 2012). This connection highlights how mitotic errors can drive cancer development beyond simple chromosome missegregation.</p>
+        </section>
+
+        <section class="pRb-info">
+            <h2>What is pRb and Its Role in Mitosis?</h2>
+            <p>The retinoblastoma protein (pRb) is a tumor suppressor that regulates the cell cycle, particularly at the G1/S checkpoint, by inhibiting cell cycle progression until conditions are favorable (National Cancer Institute, 2024). In mitosis, pRb indirectly influences chromosome condensation by supporting the condensin II complex. When mutated, pRb fails to regulate these processes, leading to mitotic defects and DNA damage, which are key drivers of cancer (Thompson et al., 2012).</p>
+            <div class="pRb-graphic-container">
+                <div class="pRb-graphic" onclick="showPRbDetail('structure')">
+                    <h3>pRb Structure</h3>
+                    <img src="pRb_structure.jpg" alt="pRb Protein Structure" style="max-width: 100%; height: auto;">
+                </div>
+                <div class="pRb-graphic" onclick="showPRbDetail('mitosis')">
+                    <h3>pRb in Mitosis</h3>
+                    <img src="pRb_mitosis.jpg" alt="pRb Role in Mitosis" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+            <div id="pRb-structure-detail" class="pRb-details">
+                <p>pRb consists of multiple domains, including the pocket domain, which binds to E2F transcription factors to regulate gene expression. Mutations in this domain disrupt its ability to control cell cycle progression (National Cancer Institute, 2024).</p>
+            </div>
+            <div id="pRb-mitosis-detail" class="pRb-details">
+                <p>During mitosis, pRb ensures proper chromosome condensation via the condensin II complex. When mutated, condensation fails, leading to DNA breaks and increased cancer risk due to genomic instability (Thompson et al., 2012).</p>
+            </div>
         </section>
 
         <section class="references">
@@ -59,9 +121,15 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Colin Toryfter Biology Website</p>
+        <p>© 2025 Biology Education</p>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        function showPRbDetail(type) {
+            document.getElementById('pRb-structure-detail').style.display = type === 'structure' ? 'block' : 'none';
+            document.getElementById('pRb-mitosis-detail').style.display = type === 'mitosis' ? 'block' : 'none';
+        }
+    </script>
 </body>
 </html>
