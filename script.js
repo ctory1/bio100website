@@ -29,7 +29,7 @@ function showAbnormalInfo(phase) {
             info = 'G1 Checkpoint Failure: Damaged DNA isn\'t repaired properly, allowing cells with mutations to proceed to replication, potentially leading to tumors.';
             break;
         case 's':
-            info = 'S Phase Errors: Mistakes in DNA replication, such as BRCA1 gene mutations, can lead to breast cancer by impairing DNA repair mechanisms.';
+            info = 'S Phase Errors: Mistakes in DNA replication, like pRb gene mutations, can disrupt E2F regulation.';
             break;
         case 'g2':
             info = 'G2 Checkpoint Failure: Unrepaired DNA damage slips through, allowing cells to enter mitosis with errors that could cause chromosomal abnormalities.';
