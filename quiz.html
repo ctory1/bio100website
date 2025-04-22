@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology Quiz - Mitosis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .quiz-container {
+            margin: 20px 0;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Biology Quiz</h1>
+    <h2>Test Your Knowledge on Mitosis and Abnormal Mitosis</h2>
+    <div class="quiz-container">
+        <form id="quizForm">
+            <div class="question">
+                <p>1. What is the main purpose of mitosis?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> a) To produce gametes</label>
+                    <label><input type="radio" name="q1" value="b"> b) To repair damaged tissues</label>
+                    <label><input type="radio" name="q1" value="c"> c) To create genetic diversity</label>
+                    <label><input type="radio" name="q1" value="d"> d) To reduce chromosome number</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>2. In which phase of mitosis do chromosomes align at the cell's equator?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> a) Prophase</label>
+                    <label><input type="radio" name="q2" value="b"> b) Metaphase</label>
+                    <label><input type="radio" name="q2" value="c"> c) Anaphase</label>
+                    <label><input type="radio" name="q2" value="d"> d) Telophase</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>3. What happens during anaphase?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> a) Chromosomes condense</label>
+                    <label><input type="radio" name="q3" value="b"> b) Sister chromatids separate</label>
+                    <label><input type="radio" name="q3" value="c"> c) Nuclear envelope reforms</label>
+                    <label><input type="radio" name="q3" value="d"> d) Spindle fibers form</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>4. Abnormal mitosis can lead to which of the following?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="a"> a) Increased genetic diversity</label>
+                    <label><input type="radio" name="q4" value="b"> b) Normal cell division</label>
+                    <label><input type="radio" name="q4" value="c"> c) Cancer</label>
+                    <label><input type="radio" name="q4" value="d"> d) Meiosis</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>5. What is a common cause of abnormal mitosis?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="a"> a) Proper spindle fiber function</label>
+                    <label><input type="radio" name="q5" value="b"> b) DNA replication errors</label>
+                    <label><input type="radio" name="q5" value="c"> c) Normal cell cycle regulation</label>
+                    <label><input type="radio" name="q5" value="d"> d) Balanced chromosome numbers</label>
+                </div>
+            </div>
+            <button type="submit">Submit Quiz</button>
+        </form>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'b',
+                q4: 'c',
+                q5: 'b'
+            };
+
+            const correctAnswersText = {
+                q1: 'To repair damaged tissues',
+                q2: 'Metaphase',
+                q3: 'Sister chromatids separate',
+                q4: 'Cancer',
+                q5: 'DNA replication errors'
+            };
+
+            let score = 0;
+            let total = 5;
+            let resultsHTML = '<h3>Results</h3>';
+            let emailBody = 'Biology Quiz Results\n\n';
+
+            for (let i = 1; i <= total; i++) {
+                const question = `q${i}`;
+                const userAnswer = document.querySelector(`input[name="${question}"]:checked`);
+                const questionText = document.querySelector(`#quizForm .question:nth-child(${i}) p`).innerText;
+
+                if (userAnswer) {
+                    const isCorrect = userAnswer.value === answers[question];
+                    if (isCorrect) {
+                        score++;
+                        resultsHTML += `<p class="correct">${questionText}: Correct!</p>`;
+                        emailBody += `${questionText}: Correct\n`;
+                    } else {
+                        resultsHTML += `<p class="incorrect">${questionText}: Incorrect. Correct answer: ${correctAnswersText[question]}</p>`;
+                        emailBody += `${questionText}: Incorrect (Your answer: ${userAnswer.value}, Correct answer: ${correctAnswersText[question]})\n`;
+                    }
+                } else {
+                    resultsHTML += `<p class="incorrect">${questionText}: Not answered. Correct answer: ${correctAnswersText[question]}</p>`;
+                    emailBody += `${questionText}: Not answered (Correct answer: ${correctAnswersText[question]})\n`;
+                }
+            }
+
+            resultsHTML += `<h3>Score: ${score}/${total}</h3>`;
+            emailBody += `\nScore: ${score}/${total}`;
+
+            document.getElementById('results').innerHTML = resultsHTML;
+
+            // Send email using EmailJS (replace with your EmailJS service ID, template ID, and public key)
+            try {
+                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                    to_email: 'wangbravic@gmail.com',
+                    quiz_results: emailBody
+                }, 'YOUR_PUBLIC_KEY');
+                alert('Quiz results sent to wangbravic@gmail.com');
+            } catch (error) {
+                console.error('Error sending email:', error);
+                alert('Failed to send quiz results. Please try again.');
+            }
+        });
+    </script>
+
+    <!-- Include EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init('YOUR_PUBLIC_KEY');
+    </script>
+</body>
+</html>
