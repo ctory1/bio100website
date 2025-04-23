@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biology Quiz - Mitosis</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,7 +53,15 @@
     </style>
 </head>
 <body>
-    <h1>Biology Quiz</h1>
+    <div class="banner">
+        <h1>Mitosis</h1>
+        <div class="nav-buttons">
+            <a href="index.html"><button>Home</button></a>
+            <a href="abnormal.html"><button>Abnormal Mitosis</button></a>
+            <a href="quiz.html"><button>Quiz</button></a>
+        </div>
+    </div>
+
     <h2>Test Your Knowledge on Mitosis and Abnormal Mitosis</h2>
     <div class="quiz-container">
         <form id="quizForm">
@@ -106,6 +115,10 @@
         <div id="results"></div>
     </div>
 
+    <footer>
+        <p>&copy; 2025 Mitosis Education. All rights reserved.</p>
+    </footer>
+
     <script>
         document.getElementById('quizForm').addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -129,7 +142,8 @@
             let score = 0;
             let total = 5;
             let resultsHTML = '<h3>Results</h3>';
-            let emailBody = 'Biology Quiz Results\n\n';
+            let emailBody = `Biology Quiz Results\n\nScore: ${score}/${total}\n\nIncorrect Questions:\n`;
+            let incorrectQuestions = [];
 
             for (let i = 1; i <= total; i++) {
                 const question = `q${i}`;
@@ -141,23 +155,21 @@
                     if (isCorrect) {
                         score++;
                         resultsHTML += `<p class="correct">${questionText}: Correct!</p>`;
-                        emailBody += `${questionText}: Correct\n`;
                     } else {
                         resultsHTML += `<p class="incorrect">${questionText}: Incorrect. Correct answer: ${correctAnswersText[question]}</p>`;
-                        emailBody += `${questionText}: Incorrect (Your answer: ${userAnswer.value}, Correct answer: ${correctAnswersText[question]})\n`;
+                        incorrectQuestions.push(`${questionText}: Incorrect (Your answer: ${userAnswer.value}, Correct answer: ${correctAnswersText[question]})`);
                     }
                 } else {
                     resultsHTML += `<p class="incorrect">${questionText}: Not answered. Correct answer: ${correctAnswersText[question]}</p>`;
-                    emailBody += `${questionText}: Not answered (Correct answer: ${correctAnswersText[question]})\n`;
+                    incorrectQuestions.push(`${questionText}: Not answered (Correct answer: ${correctAnswersText[question]})`);
                 }
             }
 
-            emailBody = 'Biology Quiz Results\n\nScore: ${score}/${total}\n\nIncorrect Questions:\n${incorrectQuestions.length > 0 ? incorrectQuestions.join('\n') : 'None'}`;
+            emailBody = `Biology Quiz Results\n\nScore: ${score}/${total}\n\nIncorrect Questions:\n${incorrectQuestions.length > 0 ? incorrectQuestions.join('\n') : 'None'}`;
             resultsHTML += `<h3>Score: ${score}/${total}</h3>`;
 
             document.getElementById('results').innerHTML = resultsHTML;
 
-            // Send email using EmailJS (replace with your EmailJS service ID, template ID, and public key)
             try {
                 await emailjs.send('service_225sxuu', 'template_29jx2wc', {
                     to_email: 'wangbravic@gmail.com',
@@ -171,7 +183,6 @@
         });
     </script>
 
-    <!-- Include EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         emailjs.init('02S9JutGzhf77P8F2');
