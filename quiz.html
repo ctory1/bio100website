@@ -152,8 +152,8 @@
                 }
             }
 
+            emailBody = 'Biology Quiz Results\n\nScore: ${score}/${total}\n\nIncorrect Questions:\n${incorrectQuestions.length > 0 ? incorrectQuestions.join('\n') : 'None'}`;
             resultsHTML += `<h3>Score: ${score}/${total}</h3>`;
-            emailBody += `\nScore: ${score}/${total}`;
 
             document.getElementById('results').innerHTML = resultsHTML;
 
